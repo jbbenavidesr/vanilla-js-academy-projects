@@ -1,0 +1,33 @@
+{{ html | safe }}
+
+
+
+{% if not hideTopics %}
+<h2>Topics for this lesson:</h2>
+<ul>
+{% for method in methods %}
+<li>{{ method }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<details>
+    <summary> JS for "{{ title }}"</summary>
+
+```js
+{{ js | safe }}
+```
+</details>
+
+{% if not hideNotes %}
+<details>
+<summary>Some thoughts about the project</summary>
+{% if not hideDescription %}
+{{ description | safe}}
+{% endif %}
+</details>
+{% endif %}
+
+<script>
+    {{ js | safe }}
+</script>

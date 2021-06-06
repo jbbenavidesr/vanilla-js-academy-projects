@@ -1,0 +1,11 @@
+---
+title: Vanilla JS Academy
+description: My projects while working on the Academy
+layout: base.njk
+---
+
+<ul>
+{% for project in collections.orderedProjects %}
+  <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
+{% endfor %}
+</ul>

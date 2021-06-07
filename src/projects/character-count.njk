@@ -1,0 +1,46 @@
+---
+title: "Character Count"
+order: 4
+date: 2021-06-07
+methods: ['textContent', 'innerText']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<label for="text">Enter your text below.</label>
+<textarea id="text"></textarea>
+<p>You've written <strong><span id="character-count">0</span> characters</strong>.</p>
+{% endset %}
+
+{% set js %}
+// First select the elements needed
+let textArea = document.querySelector('#text');
+let characterCountDisplay = document.querySelector('#character-count');
+
+// Add an event listener on the input.
+textArea.addEventListener('input', function (event) {
+	// Set the number to display as the length of the string in the content
+	characterCountDisplay.innerText = textArea.value.length;
+});
+{% endset %}
+
+
+{% set description %}
+The first thing I'm thinking is that by default, these projects have been thought with the id as the ideal selector. Is this the best
+practice? I have in my mind that for js it is better to use data attributes as a selector, so it would be interesting to discuss this.
+
+Additionally, I'm using input event instead of keyup as I originally thought because of a suggestion made in Slack to someone else.
+with keyup, the character count will not update if I paste text using only the mouse. However, input fires every time the input is changed,
+which is what I want in this case.
+
+I had trouble because being the textarea written with open and closing tags, I thought it's content got written inside and
+tried to access it with innerText as well. It didn't work because innerText remained empty. I needed the value property as any
+other input.
+
+Finally, in a case like this where I have no hidden elements, I guess both innerText and textContent work exactly the same. Is there a reason
+to prefer one over the other in general?
+{% endset %}
+
+
+{% include "project.njk" %}

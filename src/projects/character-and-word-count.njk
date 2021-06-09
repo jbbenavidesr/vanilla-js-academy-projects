@@ -1,0 +1,60 @@
+---
+title: "Character and Word Count"
+order: 5
+date: 2021-06-09
+methods: ['String.split()', 'Array.filter()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<label for="text">Enter your text below.</label>
+<textarea id="text"></textarea>
+<p>You've written <strong><span data-count="words">0</span> words</strong> and <strong><span data-count="char">0</span> characters</strong>.</p>
+{% endset %}
+
+{% set js %}
+//Select elements from DOM
+let text = document.querySelector("#text");
+let counters = document.querySelectorAll("[data-count]");
+
+// counters
+let countHandlers = {
+  words: function (textInput) {
+	return textInput.value.replaceAll('\n', ' ').split(' ').filter(function (item) {
+	  return !!(item.trim());
+	}).length; 
+  },
+  char: function (textInput) {
+	return textInput.value.length;
+  }
+};
+
+// Event listener
+text.addEventListener('input', function(event) {
+  for (let counter of counters) {
+	let countHandler = counter.getAttribute('data-count');
+	if (!countHandler || !countHandlers[countHandler]) return;
+	counter.innerText = countHandlers[countHandler](event.target);
+  }
+});
+{% endset %}
+
+
+{% set description %}
+For this problem I worked on implementing a different code structure. This idea was taken from
+the course portal from the academy. I saw that for handling the same event in different actions
+what Chris does is defining a _handles_ object with each of the functions and then
+giving the needed handler in the data attribute of the element. I think the code
+structure looks good.
+
+Additionally, I had difficulties in counting correctly the words because when 
+you add a newline, the newline character didn't split the words and they 
+counted as a single word. I think it could have been handled with a Regular Expression,
+but I don't want to get into that, so I did it with a `String.replaceAll` that changes new lines
+with spaces and then filtering empty strings from the array which could appear in some places
+if the value ended with a whitespace or if i had more than 1 whitespace together.
+{% endset %}
+
+
+{% include "project.njk" %}

@@ -14,6 +14,8 @@ templateEngineOverride: njk, md
 {% endset %}
 
 {% set js %}
+
+
 //Select elements from DOM
 let text = document.querySelector("#text");
 let counters = document.querySelectorAll("[data-count]");
@@ -38,6 +40,24 @@ text.addEventListener('input', function(event) {
 	counter.innerText = countHandlers[countHandler](event.target);
   }
 });
+
+// Add Polyfill 
+/**
+ * String.prototype.replaceAll() polyfill
+ * https://gomakethings.com/how-to-replace-a-section-of-a-string-with-another-one-with-vanilla-js/
+ * @author Chris Ferdinandi
+ * @license MIT
+ */
+if (!String.prototype.replaceAll) {
+    String.prototype.replaceAll = function(str, newStr){
+        // If a regex pattern
+        if (Object.prototype.toString.call(str).toLowerCase() === '[object regexp]') {
+            return this.replace(str, newStr);
+        }
+        // If a string
+        return this.replace(new RegExp(str, 'g'), newStr);
+    };
+}
 {% endset %}
 
 
@@ -54,6 +74,15 @@ counted as a single word. I think it could have been handled with a Regular Expr
 but I don't want to get into that, so I did it with a `String.replaceAll` that changes new lines
 with spaces and then filtering empty strings from the array which could appear in some places
 if the value ended with a whitespace or if i had more than 1 whitespace together.
+
+**Edit:** Someone pinted in Slack that it wasn't working and it turned out to be that his browser
+didn't support the replaceAll method. I added a polyfill just in case I think it is
+a good opportunity to get a little into this. I placed the polyfill at the end of the script basically
+because I want the first and most important part to be the solution itself, I'm almost sure that
+this works given that the method only fires when the event occurs and that is after the
+script has already been parsed, however I'm not sure if maybe I should add it in the 
+beginning. I have no old browser to test. In the end I think for this case it would
+end up being easier to just change the method to the regex method.
 {% endset %}
 
 

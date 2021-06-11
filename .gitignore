@@ -1,5 +1,7 @@
 # dependencies installed by npm
 node_modules
 
+.vscode
+
 # build artefacts
 dist

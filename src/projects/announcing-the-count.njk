@@ -2,7 +2,7 @@
 title: "Announcing the count"
 order: 6
 date: 2021-06-11
-methods: ['Aria live regions', 'Aria atomic']
+methods: ['How to use a screen reader', 'Aria live regions', 'Aria atomic']
 templateEngineOverride: njk, md
 ---
 
@@ -10,15 +10,13 @@ templateEngineOverride: njk, md
 {% set html %}
 <label for="text">Enter your text below.</label>
 <textarea id="text"></textarea>
-<div aria-live="polite" aria-atomic="true">
-<p>You've written <strong><span data-count="words">0</span> words</strong> and <strong><span data-count="char">0</span> characters</strong>.</p>
-</div>
+<p data-count aria-live="polite">You've written 0 words and 0 characters</p>
 {% endset %}
 
 {% set js %}
 //Select elements from DOM
 let text = document.querySelector("#text");
-let counters = document.querySelectorAll("[data-count]");
+let counter = document.querySelector("[data-count]");
 
 // counters
 let countHandlers = {
@@ -34,17 +32,37 @@ let countHandlers = {
 
 // Event listener
 text.addEventListener('input', function(event) {
-  for (let counter of counters) {
-	let countHandler = counter.getAttribute('data-count');
-	if (!countHandler || !countHandlers[countHandler]) return;
-	counter.innerText = countHandlers[countHandler](event.target);
-  }
+  let wordCount = countHandlers.words(event.target)
+  let charCount = countHandlers.char(event.target)
+  counter.textContent = `You've written ${wordCount} words and ${charCount} characters.`
 });
 {% endset %}
 
 
 {% set description %}
+This one have been pretty interesting. First of all, it has been my first experience using a screen reader. 
+I had heard a lot about screen readers and thinking about them when developing, But I hadn't actually used one.
+I didn't know it was as simple as enabling it in preferences.
+So a good part of the time I've given to this project have gone into learning how to use the screen reader and following
+the tutorial that voiceover offers in mac.
 
+Now the interesting part. I thought the problem itself was going to be pretty easy. I thought it would simply be to add an aria-live
+attribute to the paragraph, maybe some atomic or something like that... It wasn't that simple.
+First I added `aria-live` to the paragraph element, and it only announced numbers without content, so I set aria atomic to true, but it was worse.
+It announced things like "You've written  words and characters. 1 6" and that was on the best cases. Most times it gave even less information. 
+My next thught was that maybe it had to do with the paragraph so I added a div surrounding it with the attributes in it, but it was the same thing. 
+
+Then I tried adding the attributes to both of the strong elements, but in that case it only announces the one of words sometimes. It wasn't perfect, but it worked, it said something like
+"Words 8". Still not the text I want, but now it's understandable.
+The problem with this was that it was still unstable and the characters were not working... I don't know why. Maybe because
+they changed quickly?
+
+I checked Slack to see what were people saying and it was misteriously silent. No one had posted a solution.
+I guess I wasn't the only one struggling. Now I've seen Chris' solution and I don't like it, because it implies that I should change my approach. However, I've been trying other things And have gotten nowhere, so I guess his is my best chance.
+
+I implemented it and now it works good. I'm still having a problem
+because sometimes the phrase gets interrupted because the reader announces the last word written.
+However, in most cases It gives a complete phrase and with context.
 {% endset %}
 
 

@@ -52,6 +52,24 @@ document.addEventListener('click', clickHandler);
 
 
 {% set description %}
+This one here is my approach before checking other solutions.
+
+The first comment I have is that it was very interesting to see promises and fetch this early in the
+academy, I didn't expect them until the end. 
+
+Additionally I wanted to implement a progressive enhancement approach that showed something
+useful without js and then add the button with js and something else, but I wasn't
+able to do it easily. I guess it is not that hard, but I still have some trouble
+with all this idea. I also have problems with the mentality behind promises. I 
+expected to have a function that fetched the info and then returned the string for me to handle
+it as usual and just include it in the blockquote, but I then noticed it had to be
+done within the promise chain. My code structure is then not ideal.
+
+Some things I noticed when reading other solutions and that I want to do in a rework of this project:
+- I didn't think of screen readers. I need to do an aria-live in the quote.
+- I want to think of a better structure that works with the fetch and shows the user 
+something when there is an error.
+- It doesn't show the quote at the beginning. 
 {% endset %}
 
 

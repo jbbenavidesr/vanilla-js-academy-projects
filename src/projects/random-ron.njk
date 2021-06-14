@@ -38,7 +38,7 @@ let clickHandler = function (event) {
     // Escape if the event is not the button
     if (!event.target.matches('[data-action]')) return;
 
-    getQuote().then(function(response){
+    getQuote().then(function(quote){
         // Update UI
         quoteContainer.textContent = quote;
     });

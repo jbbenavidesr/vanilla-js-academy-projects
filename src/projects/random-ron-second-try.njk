@@ -1,0 +1,88 @@
+---
+title: "Random Ron: Second try"
+order: 8
+date: 2021-06-14
+methods: ['Promises', 'window.fetch()']
+templateEngineOverride: njk, md
+---
+
+{% set html %}
+<img alt="Ron Swanson standing in front of a buffet stating, 'I've said too much.'" src="https://giphygifs.s3.amazonaws.com/media/iofbYa67AbBg4/giphy.gif">
+<div data-app>
+    <blockquote data-quote aria-live="polite">
+        <em>Any dog under 50 pounds is a cat, and cats are useless.</em>
+    </blockquote>
+    <p>This project is not a cat if your Javascript isn't working because you still get a quote!</p>
+</div>
+{% endset %}
+
+{% set js %}
+// Variables and DOM elements
+const API_URL = "https://ron-swanson-quotes.herokuapp.com/v2/quotes";
+let app = document.querySelector('[data-app]');
+let quoteContainer = document.querySelector('[data-quote]');
+
+// Functions
+let renderQuote = function (quote) {
+    quoteContainer.textContent= quote;
+}
+
+let getQuote = function () {
+    fetch(API_URL).then(function (response) {
+        // Check if the response was correct
+        if (response.ok) {
+            return response.json();
+        }
+        // Throw an error in other case
+        throw response.status;
+    }).then(function (data) {
+        renderQuote(data[0]);
+    }).catch(function (error) {
+        renderQuote("[The request failed, here's a quote about incompetent thiefs like this API] I don’t want to paint with a broad brush here, but every single contractor in the world is a miserable, incompetent thief.");
+        console.warn(error);
+    });
+}
+
+let init = function () {
+    // Prepare UI for a working JS Version
+    app.removeChild(app.lastElementChild);
+    quoteContainer.textContent = "Getting a new quote...";
+    let btn = document.createElement('button');
+    btn.textContent = "Get Quote";
+    btn.setAttribute("data-fetch", "")
+    app.appendChild(btn)
+    
+    getQuote();
+};
+
+let clickHandler = function (event) {
+    if (!event.target.matches('[data-fetch]')) return;
+    
+    getQuote();
+};
+
+// Initialize and add event listener
+init();
+
+document.addEventListener('click', clickHandler);
+
+{% endset %}
+
+
+{% set description %}
+In the first attempt I knew It was a little crappy, but it got the job done. However,
+I wanted a really good app, so I read other's solutions and also Chris' recommendations
+and this is my new solution.
+
+I want to point out the main points I like about this:
+
+- It is progressively enhanced, so if JS doesn't load, it shows a quote and a message.
+With Javascript I render the button and update to actually get a random quote from the 
+begining.
+- It is accessible, it has the aria live in the quote to read it when it changes. (Tested)
+- I'm started to get the feel of this code structure, I like it and it helps me get
+my code a little organized.
+{% endset %}
+
+
+{% include "project.njk" %}

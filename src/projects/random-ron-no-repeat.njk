@@ -1,0 +1,89 @@
+---
+title: "Random Ron: No duplicates"
+order: 9
+date: 2021-06-16
+methods: ['Array.push()', 'Array.slice()', 'Array.shift()', 'Array.pop()', 'Array.includes()']
+templateEngineOverride: njk, md
+---
+
+{% set html %}
+<img alt="Ron Swanson standing in front of a buffet stating, 'I've said too much.'" src="https://giphygifs.s3.amazonaws.com/media/iofbYa67AbBg4/giphy.gif">
+<div data-app>
+    <blockquote data-quote aria-live="polite">
+        <em>Any dog under 50 pounds is a cat, and cats are useless.</em>
+    </blockquote>
+    <p>This project is not a cat if your Javascript isn't working because you still get a quote!</p>
+</div>
+{% endset %}
+
+{% set js %}
+// Variables and DOM elements
+const API_URL = "https://ron-swanson-quotes.herokuapp.com/v2/quotes";
+let app = document.querySelector('[data-app]');
+let quoteContainer = document.querySelector('[data-quote]');
+let fetchedQuotes = [];
+
+// Functions
+let renderQuote = function (quote) {
+    quoteContainer.textContent= quote;
+};
+
+let getQuote = function () {
+    fetch(API_URL).then(function (response) {
+        // Check if the response was correct
+        if (response.ok) {
+            return response.json();
+        }
+        // Throw an error in other case
+        throw response.status;
+    }).then(function (data) {
+        if (fetchedQuotes.includes(data[0])){
+            getQuote();
+        } else {
+            renderQuote(data[0]);
+            fetchedQuotes.push(data[0]);
+            if (fetchedQuotes.length > 50) fetchedQuotes.shift();
+        }
+    }).catch(function (error) {
+        renderQuote("[The request failed, here's a quote about incompetent thiefs like this API] I don’t want to paint with a broad brush here, but every single contractor in the world is a miserable, incompetent thief.");
+        console.warn(error);
+    });
+};
+
+let init = function () {
+    // Prepare UI for a working JS Version
+    app.removeChild(app.lastElementChild);
+    quoteContainer.textContent = "Getting a new quote...";
+    let btn = document.createElement('button');
+    btn.textContent = "Get Quote";
+    btn.setAttribute("data-fetch", "")
+    app.appendChild(btn)
+    
+    getQuote();
+};
+
+let clickHandler = function (event) {
+    if (!event.target.matches('[data-fetch]')) return;
+    
+    getQuote();
+};
+
+// Initialize and add event listener
+init();
+
+document.addEventListener('click', clickHandler);
+
+{% endset %}
+
+
+{% set description %}
+This one was simple, so this will be short. Interesting part, recursion.
+I use recursion for fetching a new quote if the one fetched is in the Array that
+stores the last 50 fetched quotes.
+If it isn't there (a new quote), then I render it, add it at the end of the array
+and if the length of the array is over 50, I remove the first element. 
+(As I check this every time, I know I only need to remove one to keep it in 50).
+{% endset %}
+
+
+{% include "project.njk" %}

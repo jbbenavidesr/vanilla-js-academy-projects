@@ -1572,10 +1572,6 @@ body > footer {
   }
   
   /* Background image is applied to the pre element on blocks, mainly because it is cropped when applied to the code element. */
-  :not(pre) > code[class*="language-"],
-  pre[class*="language-"] {
-	background-image: var(--codeBgImg);
-  }
   pre[class*="language-"]:hover,
   pre[class*="language-"]:focus-within {
 	box-shadow: 0 .25rem .25rem var(--boxShadow);

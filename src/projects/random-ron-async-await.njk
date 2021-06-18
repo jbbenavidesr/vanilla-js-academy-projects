@@ -1,0 +1,100 @@
+---
+title: "Random Ron: Async and Await"
+order: 10
+date: 2021-06-18
+methods: ['async', 'await', 'Async code structure', 'try... catch']
+templateEngineOverride: njk, md
+---
+
+{% set html %}
+<img alt="Ron Swanson standing in front of a buffet stating, 'I've said too much.'" src="https://giphygifs.s3.amazonaws.com/media/iofbYa67AbBg4/giphy.gif">
+<div data-app>
+    <blockquote data-quote aria-live="polite">
+        <em>Any dog under 50 pounds is a cat, and cats are useless.</em>
+    </blockquote>
+    <p>This project is not a cat if your Javascript isn't working because you still get a quote!</p>
+</div>
+{% endset %}
+
+{% set js %}
+// Variables and DOM elements
+const API_URL = "https://ron-swanson-quotes.herokuapp.com/v2/quotes";
+let app = document.querySelector('[data-app]');
+let quoteContainer = document.querySelector('[data-quote]');
+let fetchedQuotes = [];
+
+// Functions
+let renderQuote = function (quote) {
+    quoteContainer.textContent= quote;
+};
+
+let getQuote = async function () {
+    try {
+        let response = await fetch(API_URL)
+
+        // Check if the response was correct
+        if (!response.ok) {
+            throw response.status;
+        }
+        
+        let data = await response.json();
+
+        if (fetchedQuotes.includes(data[0])){
+            await getQuote();
+        } else {
+            renderQuote(data[0]);
+            fetchedQuotes.push(data[0]);
+            if (fetchedQuotes.length > 50) fetchedQuotes.shift();
+        }
+    } catch {
+        renderQuote("[The request failed, here's a quote about incompetent thiefs like this API] I don’t want to paint with a broad brush here, but every single contractor in the world is a miserable, incompetent thief.");
+        console.warn(error);
+    };
+};
+
+let init = function () {
+    // Prepare UI for a working JS Version
+    app.removeChild(app.lastElementChild);
+    quoteContainer.textContent = "Getting a new quote...";
+    let btn = document.createElement('button');
+    btn.textContent = "Get Quote";
+    btn.setAttribute("data-fetch", "")
+    app.appendChild(btn)
+    
+    getQuote();
+};
+
+let clickHandler = function (event) {
+    if (!event.target.matches('[data-fetch]')) return;
+    
+    getQuote();
+};
+
+// Initialize and add event listener
+init();
+
+document.addEventListener('click', clickHandler);
+
+{% endset %}
+
+
+{% set description %}
+This one was not complicated as it was just a project of refactoring what I had. 
+I have to say that I like this structure a little better because I think I understand
+it better. The other one is a completely new structure while this one is very similar
+to the usual structure that I'm used to for every other function.
+
+However, the idea of adding a 'then' function also makes to this asynchronous and
+directly shows you it goes after. With this structure it is easy to forget something
+is asynchronous and forget the await operator. I actually forgot the `response.jason()`
+part was asynchronous and just left it there. It took me some time to realize what
+was happening. 
+
+I need to work more on this to decide which approach works better for me. In principle,
+I like more the async/await structure, but I think the promise chain may be better for
+really handling async correctly and reduce bugs. Based on that, the chain would be better,
+but let's wait and see what time and more projects have to tell.
+{% endset %}
+
+
+{% include "project.njk" %}

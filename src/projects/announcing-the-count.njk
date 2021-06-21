@@ -4,6 +4,8 @@ order: 6
 date: 2021-06-11
 methods: ['How to use a screen reader', 'Aria live regions', 'Aria atomic']
 templateEngineOverride: njk, md
+eleventyComputed:
+    jsFile: "js/{{ title | slug }}.js"
 ---
 
 
@@ -14,28 +16,7 @@ templateEngineOverride: njk, md
 {% endset %}
 
 {% set js %}
-//Select elements from DOM
-let text = document.querySelector("#text");
-let counter = document.querySelector("[data-count]");
-
-// counters
-let countHandlers = {
-  words: function (textInput) {
-	return textInput.value.split(/[\s]+/g).filter(function (item) {
-	  return !!(item.trim());
-	}).length; 
-  },
-  char: function (textInput) {
-	return textInput.value.length;
-  }
-};
-
-// Event listener
-text.addEventListener('input', function(event) {
-  let wordCount = countHandlers.words(event.target)
-  let charCount = countHandlers.char(event.target)
-  counter.textContent = `You've written ${wordCount} words and ${charCount} characters.`
-});
+{% include jsFile%}
 {% endset %}
 
 

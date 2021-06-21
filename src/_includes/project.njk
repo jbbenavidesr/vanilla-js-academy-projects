@@ -1,3 +1,10 @@
+{% if jsFile %}
+{% set js %}
+{% include jsFile %}
+{% endset %}
+{% endif %}
+
+
 <div class="project-{{ order }}">
 {{ html | safe }}
 </div>

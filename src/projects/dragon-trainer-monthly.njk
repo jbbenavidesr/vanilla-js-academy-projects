@@ -1,0 +1,33 @@
+---
+title: "Dragon Trainer Monthly"
+order: 11
+date: 2021-06-21
+methods: ['Element.innerHTML', 'Array.map()', 'Array.join()', 'Template literals']
+templateEngineOverride: njk, md
+---
+
+{% set html %}
+<div data-app>
+Getting the articles...
+</div>
+{% endset %}
+
+{% set description %}
+With this I'm already starting to feel like I'm making pro stuff. 
+Up to now I haven't learn many new methods, most of it I had used before and
+had an idea of how they worked. However, I'm learning a lot of how to put them 
+together into a project. I'm learning how to think like a JS developer and learning
+how to think when approaching a project, how to plan it and how to structure my code.
+
+For this solution it was interesting, because it's like what happens with a real
+magazine app. The articles are in a CMS where editors that don't code write them
+and control them and them you call them and render them within the app. 
+
+I would like to have a better idea of how to structure my code in this cases. I 
+did it based on the usual structure I've been using, and for this it is fine
+But maybe for more complex projects with more API calls or different elements rendering
+it can become tedious or even fragile.
+{% endset %}
+
+
+{% include "project.njk" %}

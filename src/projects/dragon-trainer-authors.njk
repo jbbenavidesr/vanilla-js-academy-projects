@@ -1,0 +1,34 @@
+---
+title: "Dragon Trainer Monthly Authors"
+order: 12
+date: 2021-06-23
+methods: ['Promise.all()', 'Array.find()']
+templateEngineOverride: njk, md
+---
+
+{% set html %}
+<div data-app>
+A dragon we trained is now coming to bring us some nice articles...
+</div>
+{% endset %}
+
+{% set description %}
+Even though this should be an extension from the previous, I decided to start from scratch
+so that I could have more practice in thinking this projects and also because the
+last one was written in async await and I wanted to try this more in a then chain way.
+
+The first thing was to write a nicer default message in the html that was already
+within the app context.
+
+Then for the Javascript I tried to have it a little more structured so I made it more
+organized. First a variable section divided in api endpoints and dom elements, then 
+a section of functions divided in helpers, templates for components, then functions 
+to render UI elements and finally the function to fetch data. Finally an initializer.
+
+I tried to work in good semantics for the articles and organized code. I also tried some
+things I saw last time in other's solutions like object destructuring in functions 
+and template functions.
+{% endset %}
+
+
+{% include "project.njk" %}

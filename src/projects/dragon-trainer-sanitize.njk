@@ -1,0 +1,58 @@
+---
+title: "Dragon Trainer Monthly: Sanitize"
+order: 13
+date: 2021-06-25
+methods: ['XSS attacks', 'HTML sanitize']
+templateEngineOverride: njk, md
+---
+
+{% set html %}
+<header>
+    <h2><a href="#home" data-action="nav">Dragon Trainer Monthly</a></h2>
+    <nav>
+        <ul>
+            <li><a href="#home" data-action="nav">Home</a></li>
+            <li><a href="#archive" data-action="nav">Archive</a></li>
+            <li><a href="#authors" data-action="nav">Authors</a></li>
+        </ul>
+    </nav>
+</header>
+<div data-app="wrapper" class="home">
+    <section id="home" data-app="home">
+        <section data-section="featuredList">
+            A dragon we trained is on its way to bring you this month's articles...
+        </section>            
+        <h3>Recent Articles</h3>
+        <ul data-section="recentList">
+        </ul>
+        <a href="#archive" data-action="nav">More articles...</a>
+    </section>
+    <section id="archive" data-app="article-list">
+        <ul data-section="articleList">
+        </ul>
+    </section>
+    <section id="article-detail" data-app="article-detail">
+        <div data-section="articleDetail"></div>
+        <a href="#archive" data-action="nav">All articles...</a>
+    </section>
+    <section id="authors" data-app="author-list">
+        <ul data-section="authorList">
+        </ul>
+    </section>
+</div>
+{% endset %}
+
+{% set description %}
+For this one I went a little crazy and tried to workout a complete magazine page.
+It is pretty simple, but very fun to do. I had to plan the different views and tried
+leave the structure of each view in the markup. I used functions to handle templates,
+to be click handlers and renderers.
+
+I fetched all the data on load, sanitized it and stored it in variables that where then
+used to render everything.
+
+It's not very efficient, dry or organized, but pretty fun.
+{% endset %}
+
+
+{% include "project.njk" %}

@@ -1641,6 +1641,7 @@ pre[class*="language-"]:focus-within {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 16rem), 1fr));
   grid-gap: 1rem;
+  place-items: center;
 }
 
 .project-12 article {

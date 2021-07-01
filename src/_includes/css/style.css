@@ -1637,7 +1637,11 @@ pre[class*="language-"]:focus-within {
 }
 
 /* ----- Specific markup for projects -----*/
-
+.auto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 16rem), 1fr));
+  grid-gap: 1rem;
+}
 
 .project-12 article {
   padding: 1em;

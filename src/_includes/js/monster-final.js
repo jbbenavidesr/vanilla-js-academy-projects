@@ -120,7 +120,7 @@ function win () {
 function openDoor(door) {
 
     let behindDoor = monsters[door.getAttribute('data-door')]
-    
+
     if(behindDoor.name === "sock") {
         gameOver();
         return;
@@ -145,7 +145,7 @@ function renderDoors() {
             return `
             <div aria-live="polite">
                 <button data-door="${index}" data-action="door">
-                    <img alt="A door. Press it to reveal what's behind." src="${baseURL}/door.svg" >
+                    <img alt="Door ${index + 1}. Press it to reveal what's behind." src="${baseURL}/door.svg" >
                 </button>
             </div>`;
         }).join('')}

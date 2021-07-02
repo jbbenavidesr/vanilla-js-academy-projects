@@ -1339,6 +1339,7 @@ footer {
   padding-top: 10px;
   color: #70777f;
   color: var(--text-muted);
+  margin-top: 3em;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1639,8 +1640,8 @@ pre[class*="language-"]:focus-within {
 /* ----- Specific markup for projects -----*/
 .auto-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 16rem), 1fr));
-  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(var(--auto-grid-min-size, 14rem), 1fr));
+  grid-gap: 3rem;
   place-items: center;
 }
 
@@ -1711,4 +1712,30 @@ pre[class*="language-"]:focus-within {
 .project-13 .authors ul {
   list-style: none;
   padding: 0;
+}
+
+.project-15 img {
+  display: block;
+}
+
+.project-15 img + button {
+  margin-top: 1em;
+}
+
+.project-15 .game-win,
+.project-15 .game-loose {
+  display: none;
+}
+
+.win .project-15 .game-win {
+  display: block;
+}
+
+.loose .project-15 .game-loose {
+  display: block;
+}
+
+.win .project-15 .game-play,
+.loose .project-15 .game-play {
+  display: none;
 }

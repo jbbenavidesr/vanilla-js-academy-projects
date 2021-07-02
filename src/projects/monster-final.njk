@@ -1,0 +1,55 @@
+---
+title: "Monster Game: Keeping the score."
+order: 16
+date: 2021-07-02
+methods: ['Math operators', 'Increment and decrement operators', 'Comparison operators', 'Single Page Apps', 'HTMLElement.focus()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<div data-app class="game-play"></div>
+<div class="game-win">
+    <h2 tabindex="-1">You won!</h2>
+    <p>Monsters are safe from socks... for the moment.</p>
+    <img src="https://gobiznext.com/wp-content/uploads/2017/02/giphy-73.gif" 
+    alt="A group of monsters from the movie Monsters University is in a celebration. Mike Wazowski, in the middle, is the light ball while the other monsters light him up and dance in celebration.">
+    <button data-action="restart">Play again!</button>
+</div>
+<div class="game-loose">
+    <h2 tabindex="-1">Code 23-19! You lost.</h2>
+    <p>There was a sock behind the door and you lost this round.</p>
+    <img src="https://thumbs.gfycat.com/DefensivePoshIchneumonfly-size_restricted.gif" 
+    alt="A monster comes out of a door with a sock in his back. This brings panic among the monsters. An alarm is triggered and the sock is on the big screen.">
+    <button data-action="restart">Play again!</button>
+</div>
+
+<footer>
+    <small class="text-small text-muted">Icons by <a href="https://thenounproject.com/term/door/311732/">Jamie Dickinson</a>, <a href="https://thenounproject.com/term/monster/184225/">Nicky Knicky</a>, <a href="https://thenounproject.com/term/monster/1510400/">Alvaro Cabrera</a>, <a href="https://thenounproject.com/term/monster/28460/">Eliricon</a>, <a href="https://thenounproject.com/term/monster/82823/">April Yang</a>, <a href="https://thenounproject.com/term/monster/1062009/">tk66</a>, <a href="https://thenounproject.com/term/monster/24990/">Alex WaZa</a>, <a href="https://thenounproject.com/term/monster/37212/">Husein Aziz</a>, <a href="https://thenounproject.com/term/monster/2236082">iconcheese</a>, and <a href="https://thenounproject.com/term/socks/38451/">Yazmin Alanis</a>.</small>
+</footer>
+{% endset %}
+
+{% set description %}
+Before starting, I have to say that I had gone a little ahead with the previous project
+and included already the win and loose states of the game and the button to play again.
+
+Today I'll revisit the previous one, refactor a little and try to cover the issues
+that were comented in the previous one, specially those concerning accessibility.
+
+So I fixed the following:
+
+- The name is no longer in the markup so no cheating. I used the index approach from the solution.
+- I no longer store an array for checking if the player won, only the number is necessary.
+- I added instructions to the game view.
+- I added a div wrapper around each button with the aria-live there, so when the button is replaced
+it gets announced.
+- I focus the title of each section whenever I change the view.
+
+I tested with screen reader and it works fine except for a very long round of button
+announcements I get whenever I restart the game and also, when I open a door the focus
+changes to the next door but it is not shown so if I move to the next, it actually 
+moves more because it was already in the one I wanted but it isn't announced.
+{% endset %}
+
+
+{% include "project.njk" %}

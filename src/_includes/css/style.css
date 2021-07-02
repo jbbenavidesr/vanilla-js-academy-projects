@@ -1714,28 +1714,34 @@ pre[class*="language-"]:focus-within {
   padding: 0;
 }
 
-.project-15 img {
+.project-15 img, .project-16 img  {
   display: block;
 }
 
-.project-15 img + button {
+.project-15 img + button, .project-16 img + button  {
   margin-top: 1em;
 }
 
 .project-15 .game-win,
-.project-15 .game-loose {
+.project-15 .game-loose,
+.project-16 .game-win,
+.project-16 .game-loose  {
   display: none;
 }
 
-.win .project-15 .game-win {
+.win .project-15 .game-win,
+.win .project-16 .game-win  {
   display: block;
 }
 
-.loose .project-15 .game-loose {
+.loose .project-15 .game-loose,
+ .loose .project-16 .game-loose {
   display: block;
 }
 
 .win .project-15 .game-play,
-.loose .project-15 .game-play {
+.loose .project-15 .game-play,
+ .win .project-16 .game-play,
+.loose .project-16 .game-play{
   display: none;
 }

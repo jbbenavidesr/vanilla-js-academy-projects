@@ -1,0 +1,31 @@
+---
+title: "Notebook App"
+order: 17
+date: 2021-07-05
+methods: ['Web Storage', 'window.localStorage', 'window.sessionStorage', 'Status Messages', 'window.setTimeout()', 'document.createElement()', 'Element.append()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<form data-app="notebook">
+    <label for="note">Your note</label>
+    <textarea id="note" data-save="content"></textarea>
+    <p><button>Save Your Note</button></p>
+</form>
+{% endset %}
+
+
+{% set description %}
+Now I'm able to persist data in an app. This is a great feature to have when thinking of
+an app that doesn't need to share some data so this can lower costs in databases
+and simplify architectures of some apps. This is awesome. 
+
+Also notifications in dom are great. I had not thought of this. I'm looking forward
+to continue with this project and I hope to make it a full notebook app with different
+notebooks and that stuff.
+{% endset %}
+
+
+{% include "project.njk" %}
+

@@ -1,0 +1,35 @@
+---
+title: "Notebook App: Multiple Fields"
+order: 18
+date: 2021-07-07
+methods: ['JSON.stringify()', 'JSON.parse()', 'FormData()', 'Serializing form data']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<form id="notebook" data-notebook="notes">
+    <label for="title">Title</label>
+    <input type="text" id="title" name="title">
+    <label for="note">Your note</label>
+    <textarea id="note" name="note"></textarea>
+    <p>
+        <button>Save Your Note</button> 
+        <button type="button" data-action="delete">Delete Note</button>
+    </p>
+</form>
+{% endset %}
+
+
+{% set description %}
+So, for this one I implemented the delete button and tried to work it as general as 
+possible. My idea is that This same methods could be use to store as many notebooks
+as I want and therefore be the base of a fully blown notebook webapp. 
+
+I don't know if working things like creating a formdata per event or selecting the fields
+everytime are bad for performance. I guess yes, but it was the way I found to do it as general as possible.
+{% endset %}
+
+
+{% include "project.njk" %}
+

@@ -1,0 +1,29 @@
+---
+title: "Weather app"
+order: 19
+date: 2021-07-09
+methods: ['The Geolocation API', 'API Authentication', 'Geolocation.getCurrentPosition()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<div data-app>Please wait a minute, our monkey in your area is about to tell us the weather over there...</div>
+{% endset %}
+
+{% set description %}
+This is an app that from the outside seems very simple, but it includes a bunch of stuff.
+It was very fun to build it and see it work.
+
+I thought of taking advantage of this to learn netlify functions and use them as
+Middleman, but I decided not to do it because that would mean that my code would
+be hidden and in this case that's educational, I think it is better to keep it simple
+and in the same place. I use the same reasons Chris gave as my reasons to keep it 
+simple and in the client side. 
+
+I suffered a little to understand the response, but was finally able to work it out.
+{% endset %}
+
+
+{% include "project.njk" %}
+

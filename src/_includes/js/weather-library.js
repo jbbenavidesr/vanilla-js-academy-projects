@@ -84,6 +84,8 @@ const localWeather = function (
         sanitized[item] = sanitizeWeatherData(data[item]);
       } else if (typeof data[item] === "string") {
         sanitized[item] = sanitizeHTML(data[item]);
+      } else {
+        sanitized[item] = data[item];
       }
     }
 

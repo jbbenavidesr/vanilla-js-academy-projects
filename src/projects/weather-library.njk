@@ -1,0 +1,27 @@
+---
+title: "Weather library"
+order: 20
+date: 2021-07-12
+methods: ['Javascript Libraries', 'Default Parameters', 'String.replace()', 'String.replaceAll()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<div data-weather>Please wait a minute, our monkey in your area is about to tell us the weather over there...</div>
+{% endset %}
+
+{% set description %}
+I really like what's coming in this final part of the academy. This idea of working
+with libraries allow me to have my code ready for using in multiple cases and gives me
+much more structure. 
+
+I basically tried to do a wrapper that would work with this API so it is a library
+where the user provides the API key and the library handles the fetch and updates the
+UI by using an element with `data-weather` attribute. I think it's nice for it to be
+my first approach to libraries. I also tried to make clear documentation and comments.
+{% endset %}
+
+
+{% include "project.njk" %}
+

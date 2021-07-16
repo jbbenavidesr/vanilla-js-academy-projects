@@ -20,6 +20,8 @@ with a string instead of a function, however, using the templating with double
 curly brackets broke the build. I don't know why. 
 
 I had to change to use a single curly bracket for the template, I guess it works fine.
+
+Finally, this approach makes passing an object as second argument mandatory, even if it is an empty object. I guess there's a better way.
 {% endset %}
 
 {% include "project.njk" %}

@@ -20,7 +20,7 @@
 const localWeather = function (
   apiKey,
   {
-    template = "You are currently in {{city_name}}. The temperature is {{temp}} degrees and the weather is {{description}}.",
+    template = "You are currently in {city_name}. The temperature is {temp} degrees and the weather is {description}.",
     showIcon = true,
     errorMessage = "Our monkey was not able to send the information at the moment.. no info for you!",
     units = "M",
@@ -29,7 +29,7 @@ const localWeather = function (
   }
 ) {
   //check apiKey
-  if(!apiKey) {
+  if (!apiKey) {
     throw new Error("No api key was provided!");
   }
 
@@ -74,7 +74,7 @@ const localWeather = function (
    */
   function weatherURL(latitude, longitude) {
     let data = {
-      key: key,
+      key: apiKey,
       lon: longitude,
       lat: latitude,
       units: units,
@@ -85,37 +85,38 @@ const localWeather = function (
     return `${currentWeather_endpoint}?${buildQuery(data)}`;
   }
 
-  
   // Methods
 
-  getMessage(weather) {
+  function getMessage(weather) {
     let message = template;
-    
+
     for (let item in weather) {
-        message = message.replaceAll(`{{${item}}}`, sanitizeHtml(weather[item]));
+        message = message.replaceAll(`{${item}}`, (typeof weather[item] === "string") ?
+        sanitizeHTML(weather[item]) : weather[item]);
+      
     }
-    return message
+    return message;
   }
-  
+
   /**
    * Render the ui with the message
-   * 
+   *
    * @param {Object} weather response data from api
    */
   function render(weather) {
-
     weather = {
-        ...weather,
-        ...weather.weather
-    }
+      ...weather,
+      ...weather.weather,
+    };
 
-    let imageURL = `https://www.weatherbit.io/static/img/icons/${sanitizeHTML(weather.icon)}.png`;
+    let imageURL = `https://www.weatherbit.io/static/img/icons/${sanitizeHTML(
+      weather.icon
+    )}.png`;
 
     app.innerHTML = `
-    ${showIcon ? `<img src ="${imageURL}" alt= "" > `: ''}
+    ${showIcon ? `<img src ="${imageURL}" alt= "" > ` : ""}
     <p>${getMessage(weather)}</p>
     `;
-      
   }
 
   /**
@@ -139,7 +140,6 @@ const localWeather = function (
       if (!data) throw new Error(response);
 
       render(data.data[0]);
-
     } catch (error) {
       app.textContent = errorMessage;
       console.warn(error);
@@ -163,4 +163,7 @@ const localWeather = function (
 // API KEY--- This should never go here in a real app...
 const current_weather_key = "dfe1b7f19e37439f9dee825bad822f31";
 
-localWeather(current_weather_key);
+let options = {
+}
+
+localWeather(current_weather_key, options);

@@ -12,7 +12,14 @@ templateEngineOverride: njk, md
 {% endset %}
 
 {% set description %}
-{{ page.fileSlug }}.js
+I had a lot of trouble with this one, but not with the problem itself, eleventy
+wasn't rendering the page appropriately.
+
+I changed to the method used by chris of letting the user customize the message
+with a string instead of a function, however, using the templating with double
+curly brackets broke the build. I don't know why. 
+
+I had to change to use a single curly bracket for the template, I guess it works fine.
 {% endset %}
 
 {% include "project.njk" %}

@@ -1,0 +1,35 @@
+---
+title: "Date helper function"
+order: 22
+date: 2021-08-26
+methods: ['Timestamps', 'new Date()', 'Date.toLocaleString()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+This project is completely in Javascript so no UI for today. 
+
+You can open your devtools if you want to have a look.
+{% endset %}
+
+{% set description %}
+This is an interesting project that had me thinking a lot on how to give flexibility. 
+I started by building just a function that allowed me to do timestamp arithmetics
+and then started to see what things could be optional or which ones should be mandatory.
+
+My first thought on the function was that the delta should be mandatory, that for
+the correct functioning of the function that was necessary, but then as I created
+the options I thought that it was arbitrary for the units to be optional and the 
+ammount to be mandatory, so I decided to make everything optional and if the user
+wants the function by default just throw back tomorrows date with the browser's 
+formatting.
+
+I think this is a good idea.
+
+At the end I added some tests and also played a little with it in the console, but
+I know I'm missing some tests. It's difficult to think of edge cases that can appear.
+{% endset %}
+
+{% include "project.njk" %}
+

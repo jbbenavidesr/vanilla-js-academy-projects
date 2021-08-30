@@ -14,6 +14,15 @@ You can open your devtools if you want to have a look.
 {% endset %}
 
 {% set description %}
+This project gave me a long to think about. I'll highlight some points:
+
+- My lazyness took me to really think how could I define those functions dinamically
+cause I really didn't want to hardcode each, it look like a really not DRY thing to do.
+- The first option I found was with `new Function` but I was able to do it with things
+I already knew.
+- Testing this things is not easy. I really don't want to waste time thinking in
+wierd edge cases, though I know it is necessary. I need to put a little work on 
+this side to find it a little nicer.
 {% endset %}
 
 {% include "project.njk" %}

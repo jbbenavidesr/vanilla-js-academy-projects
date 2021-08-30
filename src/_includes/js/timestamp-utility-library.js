@@ -8,7 +8,7 @@ let stamp = (function () {
         minutes: 1000 * 60,
         hours: 1000 * 60 * 60,
         days: 1000 * 60 * 60 * 24,
-        weeks: 100 * 60 * 60 * 24 * 7,
+        weeks: 1000 * 60 * 60 * 24 * 7,
         years: 1000 * 60 * 60 * 24 * 365,
     };
 
@@ -51,18 +51,18 @@ let stamp = (function () {
 
     let library = { getDate };
 
-	/**
-	 * For each of the units in the units object, I add a function
-	 * to the object that'll be returned. This function has the name 
-	 * addUnit for each of the units, so for days it is addDays
-	 * The following applies to all the functions:
-	 * 
-	 * @param {Number} timestamp is the starting point.
-	 * @param {Number} delta is the number to add to each timestamp.
-	 * 
-	 * @return {Number} The timestamp after the calculation.
-	 * 
-	 */
+    /**
+     * For each of the units in the units object, I add a function
+     * to the object that'll be returned. This function has the name
+     * addUnit for each of the units, so for days it is addDays
+     * The following applies to all the functions:
+     *
+     * @param {Number} timestamp is the starting point.
+     * @param {Number} delta is the number to add to each timestamp.
+     *
+     * @return {Number} The timestamp after the calculation.
+     *
+     */
     for (let unit in units) {
         library["add" + unit.replace(unit[0], unit[0].toUpperCase())] =
             function (timestamp = new Date().getTime(), delta = 1) {
@@ -79,7 +79,22 @@ let stamp = (function () {
             };
     }
 
-
-	return library;
+    return library;
 })();
 
+
+let now= new Date().getTime();
+
+console.log(stamp.getDate());
+
+let testData = {
+    tomorrow: stamp.addDays(now, 1),
+    nextWeek: stamp.addWeeks(now, 1),
+    nextMonth: stamp.addDays(now, 30),
+    nextYear: stamp.addYears(now, 1),
+    nextHour: stamp.addHours(now, 1),
+};
+
+for (test in testData) {
+    console.log(test + ": " + stamp.getDate(testData[test]));
+}

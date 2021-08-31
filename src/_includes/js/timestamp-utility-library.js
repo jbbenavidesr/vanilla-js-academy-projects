@@ -42,7 +42,7 @@ let stamp = (function () {
                 timeStyle: "short",
                 hour12: false,
             },
-        });
+        }, options);
 
         let date = new Date(timestamp);
 

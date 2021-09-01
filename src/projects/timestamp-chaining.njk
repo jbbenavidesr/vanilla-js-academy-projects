@@ -24,6 +24,9 @@ Additionally, going through the last projects solution I realized that the check
 I was doing to see if the user passes a date and changing it to a Timestamp was
 unnecessary, I can pass the date to a new date object and it makes the same if the
 user passes a Timestamp, a string or a date.
+
+UPDATE: I fell into the common issue of modifying the original stamp. I now updated
+to creating a new one.
 {% endset %}
 
 {% include "project.njk" %}

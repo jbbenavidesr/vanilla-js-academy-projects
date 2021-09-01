@@ -27,16 +27,15 @@ let Stamp = (function () {
      * @param {Number} delta the ammount of units to add to the timestamp.
      * @param {String} units a string with one of the allowed units.
      *
-     * @return {Constructor} Returns this instance of the Constructor.
+     * @return {Constructor} Returns a new instance of the Constructor.
      */
     Constructor.prototype.addTime = function (delta, deltaUnits) {
 		if (!units[deltaUnits]){
 			throw `The units ${deltaUnits} are not supported yet.`
 		}
 
-        this.stamp += delta * units[deltaUnits];
+        return new Constructor(this.stamp + delta * units[deltaUnits]);
 
-		return this;
     }
 
     /**
@@ -95,3 +94,4 @@ console.log("1998: " + notNow.getDate({locale:"de"}));
 let aWhileAgo = now.addWeeks().addDays(2).addYears(-3).getDate();
 
 console.log(aWhileAgo);
+console.log(now.getDate());

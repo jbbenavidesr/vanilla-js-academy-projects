@@ -1,0 +1,30 @@
+---
+title: "Timestamp Library: Chaining methods"
+order: 25
+date: 2021-09-01
+methods: ['Chaining methods in a constructor.']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+This project is completely in Javascript so no UI for today. 
+
+You can open your devtools if you want to have a look.
+{% endset %}
+
+{% set description %}
+This makes much more sense. It is way easier to work like this than having
+to call a new Stamp every time with the result of one of the functions.
+
+It was a pretty small change. Given the way I had built the library, I only had to
+make the change in 1 place and it applied to every method that was needed.
+
+Additionally, going through the last projects solution I realized that the check
+I was doing to see if the user passes a date and changing it to a Timestamp was
+unnecessary, I can pass the date to a new date object and it makes the same if the
+user passes a Timestamp, a string or a date.
+{% endset %}
+
+{% include "project.njk" %}
+

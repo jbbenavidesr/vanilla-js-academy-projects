@@ -1,0 +1,26 @@
+---
+title: "Dice Library"
+order: 27
+date: 2021-09-02
+methods: ['DOM manipulation Libraries', 'Injecting to DOM from Library', 'Event Listener in Library']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>
+	<button id="dice">Roll a D6</button>
+</p>
+
+<div id="result" aria-live="polite"></div>
+{% endset %}
+
+{% set description %}
+It's nice to be back in the DOM and doing stuff that actually interacts. 
+
+My only question with this one is why is the recommended using a shuffle instead
+of using the approach I used for random numbers. Is ther a reason for that to be better?
+{% endset %}
+
+{% include "project.njk" %}
+

@@ -34,6 +34,9 @@ let Dice = (function () {
 		let button = document.querySelector(buttonSelector);
 		let display = document.querySelector(displaySelector);
 
+		// Check if elements do exist
+		if (!button | !display) throw "Button and display elements should be provided for this to work";
+
 		// Make sure display has aria live polite
 		display.setAttribute('aria-live', 'polite');
 

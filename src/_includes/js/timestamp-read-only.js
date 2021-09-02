@@ -20,7 +20,7 @@ let Stamp = (function () {
         let stamp = timestamp ? new Date(timestamp).getTime() : new Date().getTime();
 
 		Object.defineProperties(this, {
-			_stamp:{value: stamp},
+			stamp:{value: stamp},
 		})
     }
 
@@ -38,7 +38,7 @@ let Stamp = (function () {
 			throw `The units ${deltaUnits} are not supported yet.`
 		}
 
-        return new Constructor(this._stamp + delta * units[deltaUnits]);
+        return new Constructor(this.stamp + delta * units[deltaUnits]);
 
     }
 
@@ -62,7 +62,7 @@ let Stamp = (function () {
             options
         );
 
-        let date = new Date(this._stamp);
+        let date = new Date(this.stamp);
 
         return date.toLocaleString(locale, formatOptions);
     };

@@ -1,0 +1,26 @@
+---
+title: "Timestamp Library: Read Only Porperties"
+order: 26
+date: 2021-09-01
+methods: ['Private properties', 'convention of underscore', 'Read Only properties', 'Object.defineProperties()', 'Object.freeze()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+This project is completely in Javascript so no UI for today. 
+
+You can open your devtools if you want to have a look.
+{% endset %}
+
+{% set description %}
+In general, the idea is simple. It was straightforward change.
+
+What is the approach for having private methods? 
+In my library I have the method addTime that is then used by all the other
+methods of date arithmetic. It is meant to be private, but it isn't. Don't know
+how can it be private. I did put an underscore to the name.
+{% endset %}
+
+{% include "project.njk" %}
+

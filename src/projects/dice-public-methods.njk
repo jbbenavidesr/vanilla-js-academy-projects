@@ -1,0 +1,34 @@
+---
+title: "Dice Library: Public Methods"
+order: 29
+date: 2021-09-06
+methods: ['Adding public methods']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>
+	<button id="d6">Roll a D6</button>
+	<button id="d20">Roll a D20</button>
+</p>
+
+<div id="result" aria-live="polite"></div>
+{% endset %}
+
+{% set description %}
+Okay. I did some refactoring because My previous code was not as organized and I 
+liked some things that Chris did in the solution. 
+
+This takes me once again to the point I've been having trouble for some time. How
+to organize my code. What should be my approach now that it is with libraries.
+
+Should the constructor be last or first?
+
+Should public methods go after the constructor or before? 
+
+When do I know if something should be a property or should be passed to the functions?
+{% endset %}
+
+{% include "project.njk" %}
+

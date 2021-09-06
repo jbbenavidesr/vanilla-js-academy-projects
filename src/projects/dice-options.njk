@@ -1,0 +1,23 @@
+---
+title: "Dice Library: Options"
+order: 28
+date: 2021-09-05
+methods: ['Adding options to DOM libraries', 'new Array(N)', 'Creating Arrays dynamically.']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>
+	<button id="d6">Roll a D6</button>
+	<button id="d20">Roll a D20</button>
+</p>
+
+<div id="result" aria-live="polite"></div>
+{% endset %}
+
+{% set description %}
+{% endset %}
+
+{% include "project.njk" %}
+

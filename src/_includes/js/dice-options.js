@@ -46,7 +46,6 @@ let Dice = (function () {
                 return index + 1;
             }
         );
-		console.log(faces)
 
         /**
          * Rolls the dice. Handles the click event.

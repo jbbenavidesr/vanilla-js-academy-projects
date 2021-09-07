@@ -1,0 +1,29 @@
+---
+title: "Dice Library: Callbacks or Custom Events"
+order: 31
+date: 2021-09-07
+methods: ['Callbacks on Libraries', 'Custom Events', 'Custom Events on libraries']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>
+	<button id="d1">Info of D1</button>
+	<button id="d20">Roll a D20</button>
+</p>
+
+<div id="result" aria-live="polite"></div>
+{% endset %}
+
+{% set description %}
+So, in general I agree with what Chris said over weather to use callbacks or events
+and it makes much more sense for me to use events, so I did it that way.
+
+I added an event before the roll that allows to prevent the roll and also an event
+after the roll that can use the result. I don't think there's any other event that can be
+significant here. 
+{% endset %}
+
+{% include "project.njk" %}
+

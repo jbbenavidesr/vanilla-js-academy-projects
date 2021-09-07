@@ -1,0 +1,47 @@
+---
+title: "Dice Library: Destroy"
+order: 30
+date: 2021-09-07
+methods: ['Destroying an instance', 'Element.remove()', 'removeEventListener()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>
+	<button id="d6">Roll a D6</button>
+	<button id="d20">Roll a D20</button>
+</p>
+
+<div id="result" aria-live="polite"></div>
+{% endset %}
+
+{% set description %}
+The first thing I did was to modify some things that made more sense in the solution
+of the previous project than in mine. At first it felt somewhat strange but it 
+did end up in less and more readable code, so it's better. 
+
+In this one I struggled with how should it be destroyed:
+
+- First I removed the event listener and the elements, however as it is possible that
+	2 elements may use the same display, that cannot be removed. I could've removed
+	just the button, but I thought that as the button is not injected in the library,
+	Maybe it was better just to disable it.
+
+- Then after this was done I found that removing the event listener and disabling
+	the button worked for click, but I could still run the roll method. I first 
+	thought to add a disabled property to the Constructor and then work out the
+	logic in the function, however this was to complicated.
+
+- Then I realized I could just redefine the function in the destroy to null, but
+	when I did this and I tried to call the roll function after destroying I got
+	an error because null is not callable. I think this was not an optimal way to 
+	work.
+
+- Finally I redefined the roll function with a new function that only retruns null.
+	This way it doesn't work any more, but still doesn't throw an error. I think this
+	was good.
+{% endset %}
+
+{% include "project.njk" %}
+

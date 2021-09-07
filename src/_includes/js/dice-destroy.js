@@ -39,7 +39,7 @@ let Dice = (function () {
      * @param {Node} btn The button to attatch the listener
      * @param {Constructor} instance the current instantiation
      */
-    function createEventListener(btn, instance) {
+    function createEventListener(instance) {
         /**
          * Rolls the dice. Handles the click event.
          */
@@ -47,7 +47,9 @@ let Dice = (function () {
 			instance.roll()
         }
 
-        return btn.addEventListener("click", roll);
+        instance._button.addEventListener("click", roll);
+
+        return roll;
     }
 
     /**
@@ -85,8 +87,10 @@ let Dice = (function () {
 			_sides: { value: sides },
         });
 
-        // Create the event Listener
-        this._listener = createEventListener(button, this);
+        // Create the event Listener and attatch it
+        Object.defineProperties(this, {
+            _listener: { value: createEventListener(this) }
+        })
 
     }
 
@@ -114,13 +118,14 @@ let Dice = (function () {
 	Constructor.prototype.destroy = function () {
 
 		// Destroy the event listener
-		removeEventListener('click', this._listener);
+		this._button.removeEventListener('click', this._listener);
 
-		// Disable the button
-		this._button.setAttribute('disabled', true);
+		// Clear the UI.
+        this._button.setAttribute('disabled', true)
+        this._display.textContent = '';
 
 		// Remove the roll function
-		this.roll = () => null; 
+		this.roll = null; 
 
 	}
 

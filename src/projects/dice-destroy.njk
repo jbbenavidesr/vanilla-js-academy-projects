@@ -41,6 +41,25 @@ In this one I struggled with how should it be destroyed:
 - Finally I redefined the roll function with a new function that only retruns null.
 	This way it doesn't work any more, but still doesn't throw an error. I think this
 	was good.
+
+### UPDATE: 
+
+Okay, so I had some mistakes. First, I didn't remove the event listener
+correctly, I had misunderstood the use of the event listener and I wasn't attaching
+it to the element, just running as a standalone function and additionally I was
+returning the event listener creation which is undefined, not the function.
+It only worked because I also updated the roll method that the event used.
+additionally, I chenged to the double defineProperties because I was just using 
+`this._listener = createEventListener(this);` but with define it remains unchangeable
+so it is better.
+
+I assigned the function to null. At first it seemed wierd to me that with it it throws
+an error so as I commented above I decided to turn it into a function, but while
+watching the video I came to realize that it made more sense like this because the
+idea of the destroy is to destroy the instance so yes, that function doesn't exist
+and an error is the best approach.
+
+Finally I also added the part in the destroy that clears the display. 
 {% endset %}
 
 {% include "project.njk" %}

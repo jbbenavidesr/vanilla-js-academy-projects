@@ -1,0 +1,7 @@
+{
+    "tags": ["projects", "june2021"],
+    "layout": "base.njk",
+    "eleventyComputed": {
+        "jsFile": "js/june2021/{{ page.fileSlug }}.js"
+    }
+}

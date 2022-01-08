@@ -1,11 +1,18 @@
 ---
 title: Vanilla JS Academy
-description: My projects while working on the Academy
+description: Collection of projects while working through different editions and levels of the Vanilla JS Academy by Chris Ferdinandi.
 layout: base.njk
 ---
 
-<ol>
-{% for project in collections.orderedProjects %}
-  <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
+{% for academy in academies %}
+  <h2>{{ academy.title }}</h2>
+  <p>{{ academy.description }}</p>
+
+  <ol>
+    {% for project in collections[academy.tagName] %}
+      <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
+    {% endfor %}
+  </ol>
+
+
 {% endfor %}
-</ol>

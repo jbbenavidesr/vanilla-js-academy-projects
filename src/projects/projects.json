@@ -1,7 +1,0 @@
-{
-    "tags": "projects",
-    "layout": "base.njk",
-    "eleventyComputed": {
-        "jsFile": "js/{{ page.fileSlug }}.js"
-    }
-}

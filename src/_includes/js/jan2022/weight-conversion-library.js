@@ -31,5 +31,49 @@ const convert = (function () {
         }
     }
 
-    return conversionFunctions;
+    /**
+     * Get result in formatted string
+     */
+    function format(value, unit = "Gram") {
+        return `${value.toLocaleString()} ${unit}`;
+    }
+
+    return { ...conversionFunctions, format };
 })();
+
+const weightForm = document.querySelector('[data-target="conversionData"]');
+const resultContainer = document.querySelector('[data-target="result"]');
+
+function submitHandler(event) {
+    event.preventDefault();
+
+    let data = new FormData(weightForm);
+
+    let value = parseInt(data.get("value"));
+    let current = data.get("currentUnit");
+    let desired = data.get("desiredUnit");
+
+    if (isNaN(value)) {
+        resultContainer.textContent = "Please enter a valid value.";
+        return;
+    }
+
+    if (current === desired) {
+        resultContainer.textContent = `It's the same unit so it's still ${convert.format(
+            value,
+            current
+        )}`;
+        return;
+    }
+
+    let functionName = `${current.toLowerCase()}To${desired}`;
+
+    let result = convert[functionName](value);
+
+    resultContainer.textContent = `${convert.format(
+        value,
+        current
+    )} is equivalent to ${convert.format(result, desired)}`;
+}
+
+weightForm.addEventListener("submit", submitHandler);

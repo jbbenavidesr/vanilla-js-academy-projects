@@ -8,8 +8,28 @@ templateEngineOverride: njk, md
 
 
 {% set html %}
-<p>For the moment, all the magic happens in the console... 
-    With some time available, maybe I can make a nice simple UI.</p>
+<p>Enter the value and unit you have and the unit you want to convert it to.</p>
+<form data-target="conversionData">
+    <fieldset>
+        <legend>Current weight</legend>
+        <label for="value">value</label>
+        <input type="number" name="value" id="value">
+        <label for="currentUnit">Current Unit</label>
+        <select name="currentUnit" id="currentUnit">
+            <option value="Mg">Milligrams</option>
+            <option value="Grams">Grams</option>
+            <option value="Kg">Kilograms</option>
+        </select>
+    </fieldset>
+    <label for="desiredUnit">Target Unit</label>
+    <select name="desiredUnit" id="desiredUnit">
+        <option value="Mg">Milligrams</option>
+        <option value="Grams">Grams</option>
+        <option value="Kg">Kilograms</option>
+    </select>
+    <button>Convert</button>
+</form>
+<p data-target="result" aria-live="polite">Waiting for data to convert...</p>
 {% endset %}
 
 
@@ -20,6 +40,9 @@ For today's project I let out the physicist there's in me and had some fun with 
 I think the library in this case is pretty simple, but I left it so that
 it was basically done alone and I can just add whatever units I want in the unit
 object.
+
+I had some time to work out a very simple UI that let's me play with the different
+possibilities of conversion.
 {% endset %}
 
 

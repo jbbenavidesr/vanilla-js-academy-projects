@@ -26,7 +26,7 @@ const convert = (function () {
              * @returns value in desired units.
              */
             conversionFunctions[name] = function (value) {
-                return value * factor;
+                return parseFloat(value) * factor;
             };
         }
     }
@@ -49,7 +49,7 @@ function submitHandler(event) {
 
     let data = new FormData(weightForm);
 
-    let value = parseInt(data.get("value"));
+    let value = data.get("value");
     let current = data.get("currentUnit");
     let desired = data.get("desiredUnit");
 

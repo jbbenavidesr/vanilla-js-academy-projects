@@ -13,6 +13,16 @@ templateEngineOverride: njk, md
 
 
 {% set description %}
+It was nice.
+The idea of simply passing the project to a constructor wasn't that hard in itself.
+However, I struggled because in the loop I use to create the functions because
+the loop ran and then all the functions used the same factor corresponding to the
+last one (Ton). I had to use an IIFE in order for the function to actually use
+value at the moment it ran.
+
+I think in this case my elegant solution wasn't as simple as I would want, but 
+at the end it works and still have the ability to add as many units as I'd like
+afterwards.
 {% endset %}
 
 

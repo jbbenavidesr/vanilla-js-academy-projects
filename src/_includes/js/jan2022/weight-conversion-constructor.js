@@ -26,7 +26,7 @@ const Weight = (function () {
         Constructor.prototype[name] = (function () {
             let factor = 1 / units[unit];
             return function () {
-                this.weight = this.weight * factor;
+                return this.weight * factor;
             };
         })();
     }
@@ -34,8 +34,13 @@ const Weight = (function () {
     /**
      * Get result in formatted string
      */
-    Constructor.prototype.format = function (unit = "Grams") {
-        return `${this.weight.toLocaleString()} ${unit}`;
+    Constructor.prototype.format = function (unit = "Mg") {
+        if (!units[unit]) {
+            throw new Error(
+                `${unit} is not in the units allowed by this library`
+            );
+        }
+        return `${this[`in${unit}`]().toLocaleString()} ${unit}`;
     };
 
     return Constructor;
@@ -43,8 +48,8 @@ const Weight = (function () {
 
 let me = new Weight(70000000);
 
-console.log(me.format("mg"));
+console.log(me.format("Mg"));
 
 me.inKg();
 
-console.log(me.format("kg"));
+console.log(me.format("Kg"));

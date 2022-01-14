@@ -1,0 +1,25 @@
+---
+title: "Weight conversion Constructor - Chaining"
+order: 2
+date: 2022-01-14
+methods: ['Chaining methods']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>Everything here happens in the console. Have a look.</p>
+{% endset %}
+
+
+{% set description %}
+I decided to change my approach to formatting. I left the format as a private method
+and left a format flag in the conversion methods. 
+
+Additionally, I added in a similar dynamic approach methods to add 
+weight to the instance. Again, I find that my approach is not that elegant,
+but it works.
+{% endset %}
+
+
+{% include "project.njk" %}

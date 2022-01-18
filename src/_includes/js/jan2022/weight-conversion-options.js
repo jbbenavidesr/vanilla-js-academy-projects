@@ -26,6 +26,9 @@ const Weight = (function () {
             options
         );
 
+        if (!units[settings.units])
+            throw `[Convert.js]: "${settings.units}" is not a valid unit in this library.`;
+
         let factor = units[settings.units];
 
         this.weight = parseFloat(weight) * factor;

@@ -1,0 +1,27 @@
+---
+title: "Weight conversion Constructor - Options"
+order: 3
+date: 2022-01-17
+methods: ['Passing Options', 'Default options', 'Object.assign()']
+templateEngineOverride: njk, md
+---
+
+
+{% set html %}
+<p>Everything here happens in the console. Have a look.</p>
+{% endset %}
+
+
+{% set description %}
+I'm pretty sick today so I'm keeping it pretty simple. Nothing fancy for the moment.
+
+I decided that instead of changing everything, I would still save the weight property in
+milligrams and just update the factor to use according to the units given in the
+options object.
+
+I'd like to change my units object so that I can handle normal names and also the
+abbreviatures in lowercase. That will be for another day though.
+{% endset %}
+
+
+{% include "project.njk" %}

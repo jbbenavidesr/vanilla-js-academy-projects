@@ -1,0 +1,81 @@
+---
+title: "Date utility library with ES Modules"
+order: 5
+date: 2022-02-20
+methods: ['ES Modules', 'export', 'import', 'Module scoping']
+templateEngineOverride: njk, md
+esModule: true
+---
+
+
+{% set html %}
+<p>Everything here happens in the console. Have a look.</p>
+{% endset %}
+
+
+{% set description %}
+This one had me playing with all the set up I had built with 11ty for having this
+site running with all the projects. I had assumed a simple one file per project that
+was working pretty nice till now that we started ES Modules. I'll have to work something
+out for handling this, specially with the build tools that come in the future and that stuff.
+For the moment I did it by playing with the template and passthrough copies for having the necessary
+files available.
+
+With the project specifically I struggled a little with my dynamic functions, they
+worked pretty good with the revealing module pattern, but apparently you cannot destructure
+es module exports. What I understand is that the browser should be able to statically
+identify the exports without running the code so I need to have the sepecific methods
+defined beforehand.
+
+What I did is to create the methods dynamically and have the specific names of exports that
+are needed and assigns the dynamic methods to these names. I guess it works but it adds
+complexity... I guess there should be a better way of doing this, but for the moment it works.
+{% endset %}
+
+
+<section class="project-{{ order }}">
+{{ html | safe }}
+</section>
+
+{% if not hideTopics %}
+<h2>Topics for this lesson:</h2>
+<ul>
+{% for method in methods %}
+<li>{{ method }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+
+<details>
+    <summary>time.js</summary>
+
+```js
+{% include "js/jan2022/date-utility-es-modules/time.js"%}
+```
+</details>
+
+<details>
+    <summary>main.js</summary>
+
+```js
+{% include "js/jan2022/date-utility-es-modules/main.js"%}
+```
+</details>
+
+{% if not hideNotes %}
+<details>
+<summary>Some thoughts about the project</summary>
+{% if not hideDescription %}
+{{ description | safe}}
+{% endif %}
+</details>
+{% endif %}
+
+{% if esModule %}
+<script type="module" src="/js/{{ page.fileSlug }}/main.js"></script>
+{% else %}
+<script>
+    {{ js | safe }}
+</script>
+{% endif %}

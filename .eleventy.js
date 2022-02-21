@@ -8,6 +8,12 @@ module.exports = function (eleventyConfig) {
         return new CleanCSS({}).minify(code).styles;
     });
 
+    // For the moment need some passthroughs to handle modules
+    eleventyConfig.addPassthroughCopy({
+        "src/_includes/js/jan2022/date-utility-es-modules":
+            "js/date-utility-es-modules",
+    });
+
     return {
         dir: {
             input: "src",

@@ -1,0 +1,65 @@
+---
+title: "Date library: constructor pattern"
+order: 7
+date: 2022-02-25
+methods: ['Default exports', 'Export multiple functions and a default', 'Arrays & function arguments']
+templateEngineOverride: njk, md
+esModule: true
+---
+
+
+{% set html %}
+<p>Everything here happens in the console. Have a look.</p>
+{% endset %}
+
+
+{% set description %}
+{% endset %}
+
+
+<section class="project-{{ order }}">
+{{ html | safe }}
+</section>
+
+{% if not hideTopics %}
+<h2>Topics for this lesson:</h2>
+<ul>
+{% for method in methods %}
+<li>{{ method }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+
+<details>
+    <summary>time.js</summary>
+
+```js
+{% include "js/jan2022/date-utility-es-modules/time.js"%}
+```
+</details>
+
+<details>
+    <summary>main.js</summary>
+
+```js
+{% include "js/jan2022/date-utility-es-modules/main.js"%}
+```
+</details>
+
+{% if not hideNotes %}
+<details>
+<summary>Some thoughts about the project</summary>
+{% if not hideDescription %}
+{{ description | safe}}
+{% endif %}
+</details>
+{% endif %}
+
+{% if esModule %}
+<script type="module" src="/js/{{ page.fileSlug }}/main.js"></script>
+{% else %}
+<script>
+    {{ js | safe }}
+</script>
+{% endif %}

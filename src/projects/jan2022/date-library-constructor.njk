@@ -1,7 +1,7 @@
 ---
 title: "Date library: constructor pattern"
 order: 7
-date: 2022-02-25
+date: 2022-02-28
 methods: ['Default exports', 'Export multiple functions and a default', 'Arrays & function arguments']
 templateEngineOverride: njk, md
 esModule: true
@@ -14,6 +14,11 @@ esModule: true
 
 
 {% set description %}
+With this idea of constructor the dynamic creation is way easier as the 
+export is not dynamic, just the constructor function.
+
+Thinking of Constructor without the wrapper felt wierd as I'm used to wrapping it
+with an IIFE.
 {% endset %}
 
 
@@ -35,7 +40,15 @@ esModule: true
     <summary>time.js</summary>
 
 ```js
-{% include "js/jan2022/date-utility-es-modules/time.js"%}
+{% include "js/jan2022/date-library-constructor/time.js"%}
+```
+</details>
+
+<details>
+    <summary>utils.js</summary>
+
+```js
+{% include "js/jan2022/date-library-constructor/utils.js"%}
 ```
 </details>
 
@@ -43,7 +56,7 @@ esModule: true
     <summary>main.js</summary>
 
 ```js
-{% include "js/jan2022/date-utility-es-modules/main.js"%}
+{% include "js/jan2022/date-library-constructor/main.js"%}
 ```
 </details>
 
